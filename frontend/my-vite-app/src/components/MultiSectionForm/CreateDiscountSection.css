@@ -1,0 +1,99 @@
+.discount-form-wrapper {
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.discount-header {
+  font-size: 20px;
+  font-weight: bold;
+  color: #004aad;
+  text-align: center;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.discount-container {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 25px;
+  border-radius: 6px;
+}
+
+.form-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.client-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.discount-table {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.table-header,
+.table-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-header {
+  background-color: #e8f0fe;
+  font-weight: bold;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-row input {
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.table-buttons {
+  margin-bottom: 15px;
+}
+
+.table-buttons button {
+  margin-right: 10px;
+  padding: 6px 12px;
+  background-color: #eee;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn.primary {
+  background-color: #004aad;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+}
+
+.btn.secondary {
+  background-color: #ccc;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+}

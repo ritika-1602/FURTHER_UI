@@ -1,0 +1,78 @@
+.retention-form-wrapper {
+  max-width: 800px;
+  margin: auto;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+.retention-header {
+  background-color: #d6e6f2;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid #000;
+}
+
+.retention-container {
+  padding: 20px;
+}
+
+.form-title {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.client-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  padding: 8px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.form-buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn.primary {
+  background-color: #4b5563;
+  color: white;
+}
+
+.btn.secondary {
+  background-color: #e5e7eb;
+  color: #000;
+}

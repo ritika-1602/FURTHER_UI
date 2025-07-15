@@ -1,0 +1,86 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.product-form-wrapper {
+  width: 100%;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.product-header {
+  text-align: center;
+  font-weight: bold;
+  border: 2px solid #000;
+  padding: 6px;
+  width: fit-content;
+  margin: 0 auto 20px;
+}
+
+.product-container {
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+.form-title {
+  background-color: #e6e9ed;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.client-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 40px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.form-buttons {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.form-buttons .btn {
+  padding: 8px 14px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background-color: #495057;
+  color: white;
+}
+
+.btn.secondary {
+  background-color: #e0e0e0;
+  color: black;
+}
