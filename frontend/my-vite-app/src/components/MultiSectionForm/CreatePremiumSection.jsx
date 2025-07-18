@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CreatePremiumSection.css';
 
@@ -23,7 +23,34 @@ const CreatePremiumSection = ({ clientData, productData, initialData, onBack, on
     }
   ]
 );
-  const [currency, setCurrency] = useState('EUR');
+  const [currency, setCurrency] = useState(initialData?.currency || 'EUR'); // ✅ Use from data
+
+  // ✅ Sync if data comes later (edit mode)
+  useEffect(() => {
+    if (initialData) {
+      setRows(
+        Array.isArray(initialData.rows)
+          ? initialData.rows
+          : [
+              {
+                effectiveDate: '',
+                effectiveTo: '',
+                ageFrom: '',
+                ageTo: '',
+                reinsurancePremium: '',
+                riskPremium: '',
+                furtherFees: '',
+                comment: '',
+                grossPremium: '',
+                taxes: '',
+                frontingFee: '',
+                brokerage: '',
+              }
+            ]
+      );
+      setCurrency(initialData.currency || 'EUR');
+    }
+  }, [initialData]);
 
   const handleChange = (index, e) => {
     const { name, value } = e.target;

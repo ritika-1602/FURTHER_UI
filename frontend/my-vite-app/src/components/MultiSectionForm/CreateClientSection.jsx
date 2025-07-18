@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // ✅ Import useNavigate
 import Select from 'react-select';
 import './CreateClientSection.css';
@@ -22,6 +22,26 @@ const CreateClientSection = ({ initialData,onContinue, onExit, onCancel, isEdita
     taxProduct: null,
     monthlyReport: false
   });
+  useEffect(() => {
+  if (initialData) {
+    setFormData({
+    clientCode: initialData?.clientCode || '',
+    clientName: initialData?.clientName || '',
+    clientCountry: initialData?.clientCountry || '',
+    launchDate: initialData?.launchDate || '',
+    reinsurer: initialData?.reinsurer || '',
+    category: initialData?.category || '',
+    channel: initialData?.channel || '',
+    freqBordereau: initialData?.freqBordereau || '',
+    freqReport: initialData?.freqReport || '',
+    accountingPrinciple: initialData?.accountingPrinciple || '',
+    primaryCurrency: initialData?.primaryCurrency || '',
+    secondaryCurrency: initialData?.secondaryCurrency || '',
+    taxProduct: initialData?.taxProduct || '',
+    monthlyReport: initialData?.monthlyReport || false
+  });
+  }
+}, [initialData]);
 
   const handleChange = (field, value) => {
     setFormData(prev => ({

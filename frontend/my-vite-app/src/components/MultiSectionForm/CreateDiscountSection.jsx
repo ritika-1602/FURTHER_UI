@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CreateDiscountSection.css';
 
 const CreateDiscountSection = ({ clientData, productData, initialData, onExit, onCancel, onBack,isEditable=False }) => {
   const [rows, setRows] = useState(initialData?.discounts?.length ? initialData.discounts : [
     { product: '', numberFrom: '', numberTo: '', discount: '' }
   ]);
+
+  // ✅ Sync on update mode or when data loads
+  useEffect(() => {
+    if (initialData?.discounts?.length) {
+      setRows(initialData.discounts);
+    }
+  }, [initialData]);
 
   const handleRowChange = (index, field, value) => {
     const updatedRows = [...rows];

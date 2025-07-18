@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // ✅ Import navigation
 import './CreateProductSection.css';
 
@@ -12,6 +12,18 @@ const CreateProductSection = ({ onContinue, onExit, initialData, onCancel, onBac
     productType: 'Standard',
     house: 'Yes',
   });
+
+   useEffect(() => {
+    if (initialData) {
+      setFormData({
+        productName: initialData.productName || '',
+        productCatalogueId: initialData.productCatalogueId || '',
+        comments: initialData.comments || '',
+        productType: initialData.productType || 'Standard',
+        house: initialData.house || 'Yes',
+      });
+    }
+  }, [initialData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

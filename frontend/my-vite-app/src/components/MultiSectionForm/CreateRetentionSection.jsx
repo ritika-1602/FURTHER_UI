@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // ✅ Import navigation
 import './CreateRetentionSection.css';
 
@@ -10,6 +10,17 @@ const CreateRetentionSection = ({ clientData, initialData, onContinue, onExit, o
     effectiveTo: '',
     retention: '',
   });
+
+  // ✅ Sync formData with initialData (for update mode)
+  useEffect(() => {
+    if (initialData) {
+      setFormData({
+        effectiveDate: initialData.effectiveDate || '',
+        effectiveTo: initialData.effectiveTo || '',
+        retention: initialData.retention || '',
+      });
+    }
+  }, [initialData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
