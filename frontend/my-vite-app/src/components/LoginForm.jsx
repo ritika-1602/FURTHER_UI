@@ -10,37 +10,42 @@ const LoginForm = () => {
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
-        e.preventDefault();
-        setError(''); // Clear previous errors
+  e.preventDefault();
+  setError(''); // Clear previous errors
 
-        try {
-            const response = await fetch("http://127.0.0.1:8000/api/auth/login/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",  // Helps with session authentication
-                body: JSON.stringify({ username, password }),
-            });
+  try {
+    const response = await fetch("http://127.0.0.1:8000/api/auth/login/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",  // Important for session-based auth
+      body: JSON.stringify({ username, password }),
+    });
 
-            if (!response.ok) {
-                const errorData = await response.text(); // Get response as text
-                console.error("Server Response:", errorData);
-                setError("Login failed! Check credentials.");
-                return;
-            }
+    if (!response.ok) {
+      const errorData = await response.text(); // Get response as text
+      console.error("Server Response:", errorData);
+      setError("Login failed! Check credentials.");
+      return;
+    }
 
-            const data = await response.json();
-            console.log("Response:", data);
+    const data = await response.json();
+    console.log("Response:", data);
 
-            localStorage.setItem("isAuthenticated", "true");
-            navigate("/dashboard");  // Redirect without alert
+    // Store role & session info
+    localStorage.setItem("isAuthenticated", "true");
+    localStorage.setItem("username", data.username || "");
+    localStorage.setItem("userRole", data.role || "");  // ✅ Store role for later access control
 
-        } catch (error) {
-            console.error("Login error:", error);
-            setError("Something went wrong. Please try again.");
-        }
-    };
+    navigate("/dashboard"); // Redirect after successful login
+
+  } catch (error) {
+    console.error("Login error:", error);
+    setError("Something went wrong. Please try again.");
+  }
+};
+
 
     return (
         <div className={styles.loginForm}>

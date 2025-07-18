@@ -12,9 +12,27 @@ def login(request):
     username = request.data.get("username")
     password = request.data.get("password")
     user = authenticate(username=username, password=password)
-    
+
     if user is not None:
         # If user is authenticated, send a success response
-        return Response({"message": "Login successful!"}, status=status.HTTP_200_OK)
+        try:
+            role = user.userprofile.role
+        except UserProfile.DoesNotExist:
+            role = "Unknown"
+
+        return Response({
+            "message": "Login successful!",
+            "role": role,
+            "username": user.username
+        }, status=status.HTTP_200_OK)
+
     else:
         return Response({"error": "Invalid credentials!"}, status=status.HTTP_400_BAD_REQUEST)
+
+from rest_framework import viewsets
+from .models import Client
+from .serializers import ClientSerializer
+
+class ClientViewSet(viewsets.ModelViewSet):
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer

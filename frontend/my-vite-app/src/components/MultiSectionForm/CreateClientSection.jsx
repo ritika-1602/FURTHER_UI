@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'; // ✅ Import useNavigate
 import Select from 'react-select';
 import './CreateClientSection.css';
 
-const CreateClientSection = ({ initialData,onContinue, onExit, onCancel }) => {
+const CreateClientSection = ({ initialData,onContinue, onExit, onCancel, isEditable = false }) => {
   const navigate = useNavigate(); // ✅ Initialize navigate
 
   const [formData, setFormData] = useState(initialData ||{
@@ -99,86 +99,160 @@ const CreateClientSection = ({ initialData,onContinue, onExit, onCancel }) => {
 
   return (
     <div className="form-container">
-      <h2 className="form-title">Client Info</h2>
+  <h2 className="form-title">Client Info</h2>
 
-      <div className="form-grid">
-        <div className="form-row">
-          <label>Client Code*</label>
-          <input type="text" name="clientCode" value={formData.clientCode} onChange={handleInputChange} />
-        </div>
-
-        <div className="form-row">
-          <label>Client Name*</label>
-          <input type="text" name="clientName" value={formData.clientName} onChange={handleInputChange} />
-        </div>
-
-        <div className="form-row">
-          <label>Client Country*</label>
-          <Select options={countryOptions} value={formData.clientCountry} onChange={val => handleChange('clientCountry', val)} />
-        </div>
-
-        <div className="form-row">
-          <label>Launch Date*</label>
-          <input type="date" name="launchDate" value={formData.launchDate} onChange={handleInputChange} />
-        </div>
-
-        <div className="form-row">
-          <label>Reinsurer*</label>
-          <Select options={reinsurerOptions} value={formData.reinsurer} onChange={val => handleChange('reinsurer', val)} />
-        </div>
-
-        <div className="form-row">
-          <label>Category</label>
-          <Select options={categoryOptions} value={formData.category} onChange={val => handleChange('category', val)} />
-        </div>
-
-        <div className="form-row">
-          <label>Channel*</label>
-          <Select options={channelOptions} value={formData.channel} onChange={val => handleChange('channel', val)} />
-        </div>
-
-        <div className="form-row">
-          <label>Frequency Bordereau*</label>
-          <Select options={frequencyOptions} value={formData.freqBordereau} onChange={val => handleChange('freqBordereau', val)} />
-        </div>
-
-        <div className="form-row">
-          <label>Frequency Report*</label>
-          <Select options={frequencyOptions} value={formData.freqReport} onChange={val => handleChange('freqReport', val)} />
-        </div>
-
-        <div className="form-row">
-          <label>Accounting Principle*</label>
-          <Select options={accountingPrincipleOptions} value={formData.accountingPrinciple} onChange={val => handleChange('accountingPrinciple', val)} />
-        </div>
-
-        <div className="form-row">
-          <label>Primary Currency*</label>
-          <Select options={currencyOptions} value={formData.primaryCurrency} onChange={val => handleChange('primaryCurrency', val)} />
-        </div>
-
-        <div className="form-row">
-          <label>Secondary Currency</label>
-          <Select options={currencyOptions} value={formData.secondaryCurrency} onChange={val => handleChange('secondaryCurrency', val)} />
-        </div>
-
-        <div className="form-row">
-          <label>Tax Product</label>
-          <Select options={taxProductOptions} value={formData.taxProduct} onChange={val => handleChange('taxProduct', val)} />
-        </div>
-
-        <div className="form-row checkbox-row">
-          <label>Monthly Report</label>
-          <input type="checkbox" name="monthlyReport" checked={formData.monthlyReport} onChange={handleInputChange} />
-        </div>
-      </div>
-
-      <div className="form-buttons">
-        <button className="btn blue" onClick={handleContinue}>Save & Continue</button>
-        <button className="btn green" onClick={handleExit}>Save & Exit</button>
-        <button className="btn gray" onClick={handleCancel}>Cancel</button>
-      </div>
+  <div className="form-grid">
+    <div className="form-row">
+      <label>Client Code*</label>
+      <input
+      type="text"
+      name="clientCode"
+      value={formData.clientCode}
+      onChange={handleInputChange}
+      disabled={!isEditable}
+      />
     </div>
+
+    <div className="form-row">
+      <label>Client Name*</label>
+      <input
+      type="text"
+      name="clientName"
+      value={formData.clientName}
+      onChange={handleInputChange}
+      disabled={!isEditable}
+      />
+    </div>
+
+    <div className="form-row">
+      <label>Client Country*</label>
+      <Select
+        options={countryOptions}
+        value={countryOptions.find(opt => opt.value === formData.clientCountry)}
+        onChange={val => handleChange('clientCountry', val.value)}
+        isDisabled={!isEditable}
+      />
+    </div>
+
+    <div className="form-row">
+      <label>Launch Date*</label>
+      <input
+      type="date"
+      name="launchDate"
+      value={formData.launchDate}
+      onChange={handleInputChange}
+      disabled={!isEditable}
+      />
+    </div>
+
+    <div className="form-row">
+      <label>Reinsurer*</label>
+      <Select
+        options={reinsurerOptions}
+        value={reinsurerOptions.find(opt => opt.value === formData.reinsurer)}
+        onChange={val => handleChange('reinsurer', val.value)}
+        isDisabled={!isEditable}
+      />
+    </div>
+
+    <div className="form-row">
+      <label>Category</label>
+      <Select
+        options={categoryOptions}
+        value={categoryOptions.find(opt => opt.value === formData.category)}
+        onChange={val => handleChange('category', val.value)}
+        isDisabled={!isEditable}
+      />
+    </div>
+
+    <div className="form-row">
+      <label>Channel*</label>
+      <Select
+        options={channelOptions}
+        value={channelOptions.find(opt => opt.value === formData.channel)}
+        onChange={val => handleChange('channel', val.value)}
+        isDisabled={!isEditable}
+      />
+    </div>
+
+    <div className="form-row">
+      <label>Frequency Bordereau*</label>
+      <Select
+        options={frequencyOptions}
+        value={frequencyOptions.find(opt => opt.value === formData.freqBordereau)}
+        onChange={val => handleChange('freqBordereau', val.value)}
+        isDisabled={!isEditable}
+      />
+    </div>
+
+    <div className="form-row">
+      <label>Frequency Report*</label>
+      <Select
+        options={frequencyOptions}
+        value={frequencyOptions.find(opt => opt.value === formData.freqReport)}
+        onChange={val => handleChange('freqReport', val.value)}
+        isDisabled={!isEditable}
+      />
+    </div>
+
+    <div className="form-row">
+      <label>Accounting Principle*</label>
+      <Select
+        options={accountingPrincipleOptions}
+        value={accountingPrincipleOptions.find(opt => opt.value === formData.accountingPrinciple)}
+        onChange={val => handleChange('accountingPrinciple', val.value)}
+        isDisabled={!isEditable}
+      />
+    </div>
+
+    <div className="form-row">
+      <label>Primary Currency*</label>
+      <Select
+        options={currencyOptions}
+        value={currencyOptions.find(opt => opt.value === formData.primaryCurrency)}
+        onChange={val => handleChange('primaryCurrency', val.value)}
+        isDisabled={!isEditable}
+      />
+    </div>
+
+    <div className="form-row">
+      <label>Secondary Currency</label>
+      <Select
+        options={currencyOptions}
+        value={currencyOptions.find(opt => opt.value === formData.secondaryCurrency)}
+        onChange={val => handleChange('secondaryCurrency', val.value)}
+        isDisabled={!isEditable}
+      />
+    </div>
+
+    <div className="form-row">
+      <label>Tax Product</label>
+      <Select
+        options={taxProductOptions}
+        value={taxProductOptions.find(opt => opt.value === formData.taxProduct)}
+        onChange={val => handleChange('taxProduct', val.value)}
+        isDisabled={!isEditable}
+      />
+    </div>
+
+    <div className="form-row checkbox-row">
+      <label>Monthly Report</label>
+      <input
+      type="checkbox"
+      name="monthlyReport"
+      checked={formData.monthlyReport}
+      onChange={handleInputChange}
+      isDisabled={!isEditable}
+      />
+    </div>
+  </div>
+
+  <div className="form-buttons">
+    <button className="btn blue" onClick={handleContinue}>Save & Continue</button>
+    <button className="btn green" onClick={handleExit}>Save & Exit</button>
+    <button className="btn gray" onClick={handleCancel}>Cancel</button>
+  </div>
+</div>
   );
 };
 

@@ -4,6 +4,7 @@ import LoginForm from './components/LoginForm';
 import Dashboard from './components/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import MultiSectionForm from './components/MultiSectionForm/MultiSectionForm';
+import UpdateClientForm from './components/MultiSectionForm/UpdateClientForm';
 
 const App = () => {
     return (
@@ -29,6 +30,23 @@ const App = () => {
                         </ProtectedRoute>
                     }
                     />
+
+                {/* <Route
+                    path="/clients/update/:clientId"
+                    element={
+                        <ProtectedRoute>
+                        <UpdateClientForm />
+                        </ProtectedRoute>
+                    }
+                    /> */}
+                <Route
+                path="/clients/update/:clientId"
+                element={
+                    <ProtectedRoute>
+                    <UpdateClientForm userRole={localStorage.getItem('userRole')} />
+                    </ProtectedRoute>
+                }
+                />
 
             </Routes>
         </Router>
